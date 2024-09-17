@@ -8,20 +8,24 @@ class Solution
 {
     public:
     //Function to find the next greater element for each element of the array.
-   vector<long long> nextLargerElement(vector<long long> arr, int n) {
-    vector<long long> result(n);
-    stack<long long> s;
+    #include <vector>
 
+    vector<long long> nextLargerElement(vector<long long> arr, int n) {
+    stack<long long> s;
+    vector<long long> result(n);
+
+    // Iterate from the end of the array to the beginning
     for (int i = n - 1; i >= 0; i--) {
-        // Pop elements from the stack that are less than or equal to the current element
+        // While stack is not empty and top of stack is less than or equal to arr[i]
         while (!s.empty() && s.top() <= arr[i]) {
             s.pop();
         }
 
-        // If the stack is empty, no greater element exists; otherwise, the top of the stack is the next greater element
+        // If stack is empty, no greater element exists
         if (s.empty()) {
             result[i] = -1;
         } else {
+            // Top of stack is the next greater element
             result[i] = s.top();
         }
 
@@ -31,6 +35,7 @@ class Solution
 
     return result;
 }
+
 };
 
 //{ Driver Code Starts.
